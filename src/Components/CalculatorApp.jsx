@@ -93,12 +93,40 @@ export function CalculatorApp() {
         }
     }
 
+
+    const handlePointBtnClick = point => {
+        if (computation.length >= 19) {
+            return;
+        }       
+        if (decimalAllowed) {
+            if (operators.includes(lastCharacter)) {
+                setComputation(computation + '0' + point);
+                setDecimalAllowed(false);
+            }
+            else {
+                setComputation(computation + point);
+                setDecimalAllowed(false);
+                setResult('0');
+            }
+        }
+    }
+
+
+    const handleClearBtnClick = () => {
+        setComputation('0');
+        setResult('0');
+        setDecimalAllowed(true);
+    }
+
+    
     return (
         <section id='calculator'>
             <Display computation={computation}
                      result={result} />
             <Keypad numBtnClick={handleNumBtnClick}
-                    operatorBtnClick={handleOperatorBtnClick} />
+                    operatorBtnClick={handleOperatorBtnClick}
+                    pointBtnClick={handlePointBtnClick}
+                    clearBtnClick={handleClearBtnClick} />
         </section>
     );
 }
