@@ -112,6 +112,36 @@ export function CalculatorApp() {
     }
 
 
+    const handleDelBtnClick = computationSliced => {
+        if (computation.length === 1) {
+            if (computation === '0' && result === 0) {
+                return;
+            }           
+            else return (
+                setComputation('0'),
+                setDecimalAllowed(true),
+                setResult('0')
+                );
+        }       
+        else if (computationSliced.includes('.')) {
+            /* Cut the computation string (with last character removed),
+            from last occurence of point to the end of string */
+            const pointToEnd = computationSliced.slice(computationSliced.lastIndexOf('.'), computationSliced.length);
+            /* If any of operators finds itself in the cutted string we
+            can use the point button, otherwise we can't use it */
+            if (operators.some(operator => pointToEnd.includes(operator))) {
+                setDecimalAllowed(true);
+            }
+            else setDecimalAllowed(false);
+        }
+        else if (!computationSliced.includes('.')) {
+            setDecimalAllowed(true);
+        }
+        setComputation(computationSliced);   
+        setResult('0');
+    }   
+
+
     const handleClearBtnClick = () => {
         setComputation('0');
         setResult('0');
@@ -126,6 +156,7 @@ export function CalculatorApp() {
             <Keypad numBtnClick={handleNumBtnClick}
                     operatorBtnClick={handleOperatorBtnClick}
                     pointBtnClick={handlePointBtnClick}
+                    delBtnClick={() => handleDelBtnClick(delLastCharacter)}
                     clearBtnClick={handleClearBtnClick} />
         </section>
     );
