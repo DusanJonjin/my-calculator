@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { Keypad } from './Keypad/Keypad';
 import { Display } from './Display/Display';
+import { handleEqualBtnClick } from '../Utilities/handleEqualBtnClick';
 
 export function CalculatorApp() {
 
@@ -152,12 +153,22 @@ export function CalculatorApp() {
     return (
         <section id='calculator'>
             <Display computation={computation}
-                     result={result} />
+                     result={result} 
+            />
             <Keypad numBtnClick={handleNumBtnClick}
                     operatorBtnClick={handleOperatorBtnClick}
                     pointBtnClick={handlePointBtnClick}
                     delBtnClick={() => handleDelBtnClick(delLastCharacter)}
-                    clearBtnClick={handleClearBtnClick} />
+                    clearBtnClick={handleClearBtnClick}
+                    equalBtnClick={() => handleEqualBtnClick(
+                                            computation, 
+                                            handleDelBtnClick, 
+                                            operators, 
+                                            lastCharacter, 
+                                            secToLastCharacter, 
+                                            delLastCharacter, 
+                                            setResult)}
+            />
         </section>
     );
 }
