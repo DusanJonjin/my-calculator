@@ -1,68 +1,12 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a basic calculator, made entirely in React.
 
-## Available Scripts
+It can calculate 4 basic mathematical operations, and it obeys all of the rules of these calculations (for example:
 
-In the project directory, you can run:
+ • number 0 cannot be entered multiple times without a decimal at the start of calculation;
+ • operators (with exception of '-') cannot be entered at the start of calculation;
+ • you cannot enter a operator behind '-', but you can enter '-' behind other operators (except '--') to do calculations with negative numbers;
+ • when you press equal sign and you have an operator (one or two (if it is for example '+-')) at the end of entered calculation, it erases this operator(s), and gives        you the result of previously entered calculation... etc, etc...
 
-### `npm start`
+It has a Clear button (C), and backspace button which you can use to erase last values entered in calculation. It doesn't use eval() method for making calculations from given string, so it's done with pure Javascript functions for computing and calculating these final values.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+You can use keyboard to enter values and do calculations. Clear is set on c key or Delete key, '=' is set on Enter key, backspace is set on Backspace key. :)
