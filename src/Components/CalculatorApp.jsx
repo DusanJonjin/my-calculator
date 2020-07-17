@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import { Keypad } from './Keypad/Keypad';
 import { Display } from './Display/Display';
 import { handleEqualBtnClick } from '../Utilities/handleEqualBtnClick';
@@ -148,6 +148,59 @@ export function CalculatorApp() {
         setResult('0');
         setDecimalAllowed(true);
     }
+
+
+    // This is one way of implementing KEYBOARD EVENTS with useEffect:
+    useEffect(() => {
+        const handleKeyPress = e => {      
+            switch(e.key) {
+                case 'Enter': 
+                    e.preventDefault();
+                    handleEqualBtnClick(computation, 
+                                        handleDelBtnClick, 
+                                        operators, 
+                                        lastCharacter,
+                                        secToLastCharacter, 
+                                        delLastCharacter, 
+                                        setResult);
+                    break;
+                case 'Backspace':
+                    e.preventDefault();
+                    handleDelBtnClick(delLastCharacter);
+                    break;
+                case 'Delete':
+                case 'c':
+                    handleClearBtnClick();
+                    break;
+                case '/':
+                    e.preventDefault();
+                    handleOperatorBtnClick('÷');
+                    break;
+                case '*':
+                    e.preventDefault();
+                    handleOperatorBtnClick('x');
+                    break;
+                case ',':
+                case '.': 
+                    e.preventDefault();
+                    handlePointBtnClick('.');
+                    break;
+                default: // do nothing;
+            }
+            if (/[+-]/.test(e.key)) {
+                handleOperatorBtnClick(e.key);
+            }
+            else if(/[\d]/.test(e.key)) {
+                handleNumBtnClick(e.key);
+            }                         
+        }
+
+        document.addEventListener('keydown', handleKeyPress);
+        return () => {
+            document.removeEventListener('keydown', handleKeyPress);
+        }
+    })  
+
 
     
     return (
