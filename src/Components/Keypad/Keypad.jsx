@@ -3,86 +3,55 @@ import { Button } from './Button';
 
 export function Keypad(props) {
 
-    const { numBtnClick,
-            operatorBtnClick,
-            pointBtnClick,
-            equalBtnClick,
-            delBtnClick,
-            clearBtnClick } = props;
+    const { 
+        numBtnClick,
+        operatorBtnClick,
+        pointBtnClick,
+        equalBtnClick,
+        delBtnClick,
+        clearBtnClick 
+    } = props;
 
-
-    const numBtn = number => {
+    const btn = (char, fnBtnClick) => {
+        const operatorsAndPoint = ['+', '-', 'x', '÷', '.'];
+        const charIsNumOperatorPoint = typeof char === 'number' || operatorsAndPoint.includes(char);
         return (
-            <Button value={number}
-                    buttonClick={() => numBtnClick(number)} />
+            <Button 
+                value={char}
+                buttonClick={charIsNumOperatorPoint ? () => fnBtnClick(char) : fnBtnClick} 
+            />
         );
-    }
-
-    const operatorBtn = operator => {
-        return (
-            <Button value={operator}
-                    buttonClick={() => operatorBtnClick(operator)} />
-        );
-    }
-
-    const pointBtn = point => {
-        return (
-            <Button value={point}
-                    buttonClick={() => pointBtnClick(point)} />
-        );
-    }
-
-    const equalBtn = equal => {
-        return (
-            <Button value={equal}
-                    buttonClick={equalBtnClick} />
-        );
-    }
-
-    const delBtn = del => {
-        return (
-            <Button value={del}
-                    buttonClick={delBtnClick} />
-        );
-    }
-
-    const clearBtn = clear => {
-        return (
-            <Button value={clear}
-                    buttonClick={clearBtnClick} />
-        );
-    }
-
+    };
 
     return (
         <div id='keypad'>
             <div className='keypad-row'>
-                {numBtn(7)}
-                {numBtn(8)}
-                {numBtn(9)}
-                {operatorBtn('÷')}
+                {btn(7, numBtnClick)}
+                {btn(8, numBtnClick)}
+                {btn(9, numBtnClick)}
+                {btn('÷', operatorBtnClick)}
             </div>
             <div className='keypad-row'>
-                {numBtn(4)}
-                {numBtn(5)}
-                {numBtn(6)}
-                {operatorBtn('x')}
+                {btn(4, numBtnClick)}
+                {btn(5, numBtnClick)}
+                {btn(6, numBtnClick)}
+                {btn('x', operatorBtnClick)}
             </div>
             <div className='keypad-row'>
-                {numBtn(1)}
-                {numBtn(2)}
-                {numBtn(3)}
-                {operatorBtn('-')}
+                {btn(1, numBtnClick)}
+                {btn(2, numBtnClick)}
+                {btn(3, numBtnClick)}
+                {btn('-', operatorBtnClick)}
             </div>
             <div className='keypad-row'>
-                {numBtn(0)}
-                {pointBtn('.')}
-                {equalBtn('=')}
-                {operatorBtn('+')}
+                {btn(0, numBtnClick)}
+                {btn('.', pointBtnClick)}
+                {btn('=', equalBtnClick)}
+                {btn('+', operatorBtnClick)}
             </div>
             <div className='keypad-row last'>
-                {delBtn('←')}
-                {clearBtn('C')}
+                {btn('←', delBtnClick)}
+                {btn('C', clearBtnClick)}
             </div>
         </div>
     );
